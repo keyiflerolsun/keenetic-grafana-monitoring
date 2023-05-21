@@ -173,6 +173,18 @@
       "values": {
         "temperature": "$.temperature"
       }
+    },
+    {
+      "command": "ip nat",
+      "root": "$.[*]",
+      "param": {},
+      "tags": {
+        "src": "$.src",
+        "protocol": "$.protocol"
+      },
+      "values": {
+        "bytes": "$.bytes"
+      }
     }
   ]
 }
