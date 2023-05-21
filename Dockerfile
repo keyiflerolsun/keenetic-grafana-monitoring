@@ -1,12 +1,22 @@
-FROM python:3.8-alpine AS dependencies
-COPY requirements.txt .
+# Bu araç @keyiflerolsun tarafından | @KekikAkademi için yazılmıştır.
 
-RUN pip install --no-cache-dir --user --no-warn-script-location -r requirements.txt
+# * Docker İmajı
+FROM python:3.10.8-slim-buster
 
-FROM python:3.8-alpine AS build-image
-COPY --from=dependencies /root/.local /root/.local
+# * Dil ve Bölge
+ENV LANGUAGE="C.UTF-8" LANG="C.UTF-8" LC_ALL="C.UTF-8" TZ="Europe/Istanbul"
 
-COPY value_normalizer.py keentic_influxdb_exporter.py influxdb_writter.py keenetic_api.py /home/
-COPY config/metrics.json /home/config/metrics.json
+# * Python Standart Değişkenler
+ENV PYTHONDONTWRITEBYTECODE=1 PYTHONUNBUFFERED=1 PYTHONIOENCODING="UTF-8"
 
-CMD [ "python", "-u", "/home/keentic_influxdb_exporter.py" ]
+# * Çalışma Alanı
+WORKDIR /usr/src/keenetic_exporter
+COPY ./ /usr/src/keenetic_exporter
+
+# * Gerekli Paketlerin Yüklenmesi
+RUN python3 -m pip install --upgrade pip && \
+    python3 -m pip install --no-cache-dir -U setuptools wheel && \
+    python3 -m pip install --no-cache-dir -Ur requirements.txt
+
+# * Python Çalıştırılması
+CMD ["python", "-u", "keentic_influxdb_exporter.py"]
