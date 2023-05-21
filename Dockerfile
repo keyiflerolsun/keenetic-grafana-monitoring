@@ -19,4 +19,4 @@ RUN python3 -m pip install --upgrade pip && \
     python3 -m pip install --no-cache-dir -Ur requirements.txt
 
 # * Python Çalıştırılması
-CMD ["python", "-u", "keentic_influxdb_exporter.py"]
+CMD ["python", "-u", "start.py"]

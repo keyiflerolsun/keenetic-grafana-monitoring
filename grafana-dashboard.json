@@ -97,9 +97,7 @@
         "justifyMode": "center",
         "orientation": "auto",
         "reduceOptions": {
-          "calcs": [
-            "count"
-          ],
+          "calcs": ["count"],
           "fields": "",
           "values": false
         },
@@ -112,15 +110,11 @@
           "alias": "Ethernet Clients",
           "groupBy": [
             {
-              "params": [
-                "$__interval"
-              ],
+              "params": ["$__interval"],
               "type": "time"
             },
             {
-              "params": [
-                "previous"
-              ],
+              "params": ["previous"],
               "type": "fill"
             }
           ],
@@ -134,9 +128,7 @@
           "select": [
             [
               {
-                "params": [
-                  "speed"
-                ],
+                "params": ["speed"],
                 "type": "field"
               },
               {
@@ -157,31 +149,25 @@
           "alias": "Wi-Fi Clients",
           "groupBy": [
             {
-              "params": [
-                "$__interval"
-              ],
+              "params": ["$__interval"],
               "type": "time"
             },
             {
-              "params": [
-                "null"
-              ],
+              "params": ["null"],
               "type": "fill"
             }
           ],
           "hide": false,
           "orderByTime": "ASC",
           "policy": "default",
-          "query": "SELECT last(\"signal\") as \"Wi-Fi\" FROM \"ip hotspot\"  WHERE  \"time\" > now() - 1m AND \"active\" = 1 AND $timeFilter GROUP BY \"mac\"",
+          "query": "SELECT last(\"signal\") as \"Wi-Fi (Router)\", last(\"mesh_signal\") as \"Wi-Fi (Mesh)\" FROM \"ip hotspot\"  WHERE  \"time\" > now() - 1m AND \"active\" = 1 AND $timeFilter GROUP BY \"mac\"",
           "rawQuery": true,
           "refId": "B",
           "resultFormat": "table",
           "select": [
             [
               {
-                "params": [
-                  "value"
-                ],
+                "params": ["value"],
                 "type": "field"
               },
               {
@@ -231,9 +217,7 @@
         "justifyMode": "auto",
         "orientation": "auto",
         "reduceOptions": {
-          "calcs": [
-            "last"
-          ],
+          "calcs": ["last"],
           "fields": "",
           "values": false
         },
@@ -245,15 +229,11 @@
         {
           "groupBy": [
             {
-              "params": [
-                "$__interval"
-              ],
+              "params": ["$__interval"],
               "type": "time"
             },
             {
-              "params": [
-                "null"
-              ],
+              "params": ["null"],
               "type": "fill"
             }
           ],
@@ -267,9 +247,7 @@
           "select": [
             [
               {
-                "params": [
-                  "value"
-                ],
+                "params": ["value"],
                 "type": "field"
               },
               {
@@ -351,9 +329,7 @@
       "options": {
         "orientation": "auto",
         "reduceOptions": {
-          "calcs": [
-            "mean"
-          ],
+          "calcs": ["mean"],
           "fields": "",
           "values": false
         },
@@ -367,15 +343,11 @@
           "alias": "$col",
           "groupBy": [
             {
-              "params": [
-                "$__interval"
-              ],
+              "params": ["$__interval"],
               "type": "time"
             },
             {
-              "params": [
-                "null"
-              ],
+              "params": ["null"],
               "type": "fill"
             }
           ],
@@ -388,9 +360,7 @@
           "select": [
             [
               {
-                "params": [
-                  "value"
-                ],
+                "params": ["value"],
                 "type": "field"
               },
               {
@@ -405,15 +375,11 @@
           "alias": "$col",
           "groupBy": [
             {
-              "params": [
-                "$__interval"
-              ],
+              "params": ["$__interval"],
               "type": "time"
             },
             {
-              "params": [
-                "null"
-              ],
+              "params": ["null"],
               "type": "fill"
             }
           ],
@@ -426,9 +392,7 @@
           "select": [
             [
               {
-                "params": [
-                  "value"
-                ],
+                "params": ["value"],
                 "type": "field"
               },
               {
@@ -503,9 +467,7 @@
       "options": {
         "orientation": "vertical",
         "reduceOptions": {
-          "calcs": [
-            "last"
-          ],
+          "calcs": ["last"],
           "fields": "",
           "values": false
         },
@@ -519,15 +481,11 @@
           "alias": "$col",
           "groupBy": [
             {
-              "params": [
-                "$__interval"
-              ],
+              "params": ["$__interval"],
               "type": "time"
             },
             {
-              "params": [
-                "previous"
-              ],
+              "params": ["previous"],
               "type": "fill"
             }
           ],
@@ -541,9 +499,7 @@
           "select": [
             [
               {
-                "params": [
-                  "internet"
-                ],
+                "params": ["internet"],
                 "type": "field"
               },
               {
@@ -617,21 +573,15 @@
           "alias": "Upload - $tag_name",
           "groupBy": [
             {
-              "params": [
-                "$__interval"
-              ],
+              "params": ["$__interval"],
               "type": "time"
             },
             {
-              "params": [
-                "name"
-              ],
+              "params": ["name"],
               "type": "tag"
             },
             {
-              "params": [
-                "previous"
-              ],
+              "params": ["previous"],
               "type": "fill"
             }
           ],
@@ -645,9 +595,7 @@
           "select": [
             [
               {
-                "params": [
-                  "txbytes"
-                ],
+                "params": ["txbytes"],
                 "type": "field"
               },
               {
@@ -666,15 +614,11 @@
           "alias": "Download - $tag_name",
           "groupBy": [
             {
-              "params": [
-                "$__interval"
-              ],
+              "params": ["$__interval"],
               "type": "time"
             },
             {
-              "params": [
-                "null"
-              ],
+              "params": ["null"],
               "type": "fill"
             }
           ],
@@ -687,9 +631,7 @@
           "select": [
             [
               {
-                "params": [
-                  "value"
-                ],
+                "params": ["value"],
                 "type": "field"
               },
               {
@@ -801,21 +743,15 @@
           "alias": "Upload - $tag_name",
           "groupBy": [
             {
-              "params": [
-                "$__interval"
-              ],
+              "params": ["$__interval"],
               "type": "time"
             },
             {
-              "params": [
-                "name"
-              ],
+              "params": ["name"],
               "type": "tag"
             },
             {
-              "params": [
-                "previous"
-              ],
+              "params": ["previous"],
               "type": "fill"
             }
           ],
@@ -829,9 +765,7 @@
           "select": [
             [
               {
-                "params": [
-                  "txbytes"
-                ],
+                "params": ["txbytes"],
                 "type": "field"
               },
               {
@@ -850,15 +784,11 @@
           "alias": "Download - $tag_name",
           "groupBy": [
             {
-              "params": [
-                "$__interval"
-              ],
+              "params": ["$__interval"],
               "type": "time"
             },
             {
-              "params": [
-                "null"
-              ],
+              "params": ["null"],
               "type": "fill"
             }
           ],
@@ -871,9 +801,7 @@
           "select": [
             [
               {
-                "params": [
-                  "value"
-                ],
+                "params": ["value"],
                 "type": "field"
               },
               {
@@ -985,21 +913,15 @@
           "alias": "$tag_name",
           "groupBy": [
             {
-              "params": [
-                "$__interval"
-              ],
+              "params": ["$__interval"],
               "type": "time"
             },
             {
-              "params": [
-                "name"
-              ],
+              "params": ["name"],
               "type": "tag"
             },
             {
-              "params": [
-                "none"
-              ],
+              "params": ["none"],
               "type": "fill"
             }
           ],
@@ -1013,9 +935,7 @@
           "select": [
             [
               {
-                "params": [
-                  "rxbytes"
-                ],
+                "params": ["rxbytes"],
                 "type": "field"
               },
               {
@@ -1029,9 +949,7 @@
             ],
             [
               {
-                "params": [
-                  "txbytes"
-                ],
+                "params": ["txbytes"],
                 "type": "field"
               },
               {
@@ -1146,15 +1064,11 @@
           "alias": "NAT Sessions",
           "groupBy": [
             {
-              "params": [
-                "$__interval"
-              ],
+              "params": ["$__interval"],
               "type": "time"
             },
             {
-              "params": [
-                "none"
-              ],
+              "params": ["none"],
               "type": "fill"
             }
           ],
@@ -1166,9 +1080,7 @@
           "select": [
             [
               {
-                "params": [
-                  "bytes-in"
-                ],
+                "params": ["bytes-in"],
                 "type": "field"
               },
               {
@@ -1280,21 +1192,15 @@
           "alias": "$tag_name [$tag_mode]",
           "groupBy": [
             {
-              "params": [
-                "$__interval"
-              ],
+              "params": ["$__interval"],
               "type": "time"
             },
             {
-              "params": [
-                "name"
-              ],
+              "params": ["name"],
               "type": "tag"
             },
             {
-              "params": [
-                "none"
-              ],
+              "params": ["none"],
               "type": "fill"
             }
           ],
@@ -1308,9 +1214,7 @@
           "select": [
             [
               {
-                "params": [
-                  "txrate"
-                ],
+                "params": ["txrate"],
                 "type": "field"
               },
               {
@@ -1420,21 +1324,15 @@
           "alias": "$tag_name [$tag_mode]",
           "groupBy": [
             {
-              "params": [
-                "$__interval"
-              ],
+              "params": ["$__interval"],
               "type": "time"
             },
             {
-              "params": [
-                "name"
-              ],
+              "params": ["name"],
               "type": "tag"
             },
             {
-              "params": [
-                "none"
-              ],
+              "params": ["none"],
               "type": "fill"
             }
           ],
@@ -1448,9 +1346,7 @@
           "select": [
             [
               {
-                "params": [
-                  "signal"
-                ],
+                "params": ["signal"],
                 "type": "field"
               },
               {
@@ -1556,15 +1452,11 @@
           "alias": "CPU Load",
           "groupBy": [
             {
-              "params": [
-                "$__interval"
-              ],
+              "params": ["$__interval"],
               "type": "time"
             },
             {
-              "params": [
-                "null"
-              ],
+              "params": ["null"],
               "type": "fill"
             }
           ],
@@ -1576,9 +1468,7 @@
           "select": [
             [
               {
-                "params": [
-                  "cpuload"
-                ],
+                "params": ["cpuload"],
                 "type": "field"
               },
               {
@@ -1687,15 +1577,11 @@
           "alias": "RAM Usage",
           "groupBy": [
             {
-              "params": [
-                "$__interval"
-              ],
+              "params": ["$__interval"],
               "type": "time"
             },
             {
-              "params": [
-                "linear"
-              ],
+              "params": ["linear"],
               "type": "fill"
             }
           ],
@@ -1709,9 +1595,7 @@
           "select": [
             [
               {
-                "params": [
-                  "memfree"
-                ],
+                "params": ["memfree"],
                 "type": "field"
               },
               {
@@ -1820,21 +1704,15 @@
           "alias": "$tag_command",
           "groupBy": [
             {
-              "params": [
-                "$__interval"
-              ],
+              "params": ["$__interval"],
               "type": "time"
             },
             {
-              "params": [
-                "command"
-              ],
+              "params": ["command"],
               "type": "tag"
             },
             {
-              "params": [
-                "none"
-              ],
+              "params": ["none"],
               "type": "fill"
             }
           ],
@@ -1846,9 +1724,7 @@
           "select": [
             [
               {
-                "params": [
-                  "duration"
-                ],
+                "params": ["duration"],
                 "type": "field"
               },
               {
@@ -1956,27 +1832,19 @@
           "alias": "$tag_label",
           "groupBy": [
             {
-              "params": [
-                "$__interval"
-              ],
+              "params": ["$__interval"],
               "type": "time"
             },
             {
-              "params": [
-                "label"
-              ],
+              "params": ["label"],
               "type": "tag"
             },
             {
-              "params": [
-                "uuid"
-              ],
+              "params": ["uuid"],
               "type": "tag"
             },
             {
-              "params": [
-                "none"
-              ],
+              "params": ["none"],
               "type": "fill"
             }
           ],
@@ -1988,9 +1856,7 @@
           "select": [
             [
               {
-                "params": [
-                  "free"
-                ],
+                "params": ["free"],
                 "type": "field"
               },
               {
@@ -2137,9 +2003,7 @@
         {
           "groupBy": [
             {
-              "params": [
-                "name"
-              ],
+              "params": ["name"],
               "type": "tag"
             }
           ],
@@ -2153,9 +2017,7 @@
           "select": [
             [
               {
-                "params": [
-                  "cpu"
-                ],
+                "params": ["cpu"],
                 "type": "field"
               },
               {
@@ -2163,17 +2025,13 @@
                 "type": "mean"
               },
               {
-                "params": [
-                  "CPU"
-                ],
+                "params": ["CPU"],
                 "type": "alias"
               }
             ],
             [
               {
-                "params": [
-                  "memory"
-                ],
+                "params": ["memory"],
                 "type": "field"
               },
               {
@@ -2181,9 +2039,7 @@
                 "type": "last"
               },
               {
-                "params": [
-                  "RAM"
-                ],
+                "params": ["RAM"],
                 "type": "alias"
               }
             ]
@@ -2304,27 +2160,19 @@
         {
           "groupBy": [
             {
-              "params": [
-                "interface-name"
-              ],
+              "params": ["interface-name"],
               "type": "tag"
             },
             {
-              "params": [
-                "address"
-              ],
+              "params": ["address"],
               "type": "tag"
             },
             {
-              "params": [
-                "description"
-              ],
+              "params": ["description"],
               "type": "tag"
             },
             {
-              "params": [
-                "state"
-              ],
+              "params": ["state"],
               "type": "tag"
             }
           ],
@@ -2338,9 +2186,7 @@
           "select": [
             [
               {
-                "params": [
-                  "uptime"
-                ],
+                "params": ["uptime"],
                 "type": "field"
               },
               {
