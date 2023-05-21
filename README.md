@@ -1,4 +1,4 @@
-# ~
+# Keenetic Grafana Monitör
 
 - `config/__config.ini` dosyasında keenetic arayüzünüzün kullanıcı adı ve şifresini belirtin.
   - dosya adını `config.ini` olarak değiştirin.
@@ -22,8 +22,8 @@ Adresinden yeni bir `InfluxDB` veri kaynağı oluşturun.
 ```txt
 URL      : http://influxdb:8086
 DATABASE : keenetic
-USER     : admin
-PASSWORD : password
+USER     : merhaba
+PASSWORD : dunya
 ```
 
 Ardından `grafana-dashboard.json` dosyasını `Import` edin.
