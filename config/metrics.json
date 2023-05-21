@@ -20,6 +20,7 @@
         "name": "$.name",
         "ssid": "$.ssid",
         "mode": "$.mode",
+        "meshmode": "$.mws.mode",
         "ip": "$.ip",
         "mac": "$.mac"
       },
@@ -27,6 +28,7 @@
         "rxbytes": "$.rxbytes",
         "txbytes": "$.txbytes",
         "txrate": "$.txrate",
+        "mesh_txrate": "$.mws.txrate",
         "uptime": "$.uptime",
         "signal": "$.rssi",
         "mesh_signal": "$.mws.rssi",
