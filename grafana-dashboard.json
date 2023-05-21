@@ -160,7 +160,7 @@
           "hide": false,
           "orderByTime": "ASC",
           "policy": "default",
-          "query": "SELECT last(\"signal\") as \"Wi-Fi (Router)\", last(\"mesh_signal\") as \"Wi-Fi (Mesh)\" FROM \"ip hotspot\"  WHERE  \"time\" > now() - 1m AND \"active\" = 1 AND $timeFilter GROUP BY \"mac\"",
+          "query": "SELECT last(\"signal\") as \"Wi-Fi\", last(\"mesh_signal\") as \"Wi-Fi\" FROM \"ip hotspot\"  WHERE  \"time\" > now() - 1m AND \"active\" = 1 AND $timeFilter GROUP BY \"mac\"",
           "rawQuery": true,
           "refId": "B",
           "resultFormat": "table",
