@@ -1496,7 +1496,8 @@
       "fieldConfig": {
         "defaults": {
           "color": {
-            "mode": "palette-classic"
+            "fixedColor": "blue",
+            "mode": "fixed"
           },
           "custom": {
             "axisCenteredZero": false,
@@ -1618,7 +1619,8 @@
       "fieldConfig": {
         "defaults": {
           "color": {
-            "mode": "palette-classic"
+            "fixedColor": "light-orange",
+            "mode": "fixed"
           },
           "custom": {
             "axisCenteredZero": false,
