@@ -1,6 +1,6 @@
 # Keenetic Grafana Monitör
 
-[![GitHub](SS.png)](#)
+[![GitHub](.github/SS.png)](#)
 
 ## Kurulum
 

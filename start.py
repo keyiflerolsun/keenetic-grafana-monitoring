@@ -1,9 +1,9 @@
 import configparser, json, logging, os, time
-from typing           import Dict, List
-from jsonpath_rw      import parse
-from influxdb_writter import InfuxWriter
-from keenetic_api     import KeeneticClient, KeeneticApiException
-from value_normalizer import normalize_value
+from typing                import Dict, List
+from jsonpath_rw           import parse
+from libs.influxdb_writter import InfuxWriter
+from libs.keenetic_api     import KeeneticClient, KeeneticApiException
+from libs.value_normalizer import normalize_value
 
 logging.basicConfig(level="INFO", format="%(asctime)s - %(filename)s - %(levelname)s - %(message)s")
 
