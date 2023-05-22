@@ -1,5 +1,9 @@
 # Keenetic Grafana Monitör
 
+[![GitHub](SS.png)](#)
+
+## Kurulum
+
 - `config/__config.ini` dosyasında keenetic arayüzünüzün kullanıcı adı ve şifresini belirtin.
   - dosya adını `config.ini` olarak değiştirin.
 

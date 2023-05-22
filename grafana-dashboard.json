@@ -194,7 +194,7 @@
           "tags": []
         }
       ],
-      "title": "Clients",
+      "title": "Çevrimiçi Cihazlar",
       "type": "stat"
     },
     {
@@ -278,7 +278,7 @@
           "tags": []
         }
       ],
-      "title": "Uptime",
+      "title": "Bağlantı Süresi",
       "type": "stat"
     },
     {
@@ -307,7 +307,7 @@
           {
             "matcher": {
               "id": "byName",
-              "options": "RAM Usage"
+              "options": "RAM"
             },
             "properties": [
               {
@@ -323,12 +323,28 @@
           {
             "matcher": {
               "id": "byName",
-              "options": "CPU Usage"
+              "options": "CPU"
             },
             "properties": [
               {
                 "id": "unit",
                 "value": "percent"
+              },
+              {
+                "id": "max",
+                "value": 100
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Sıcaklık"
+            },
+            "properties": [
+              {
+                "id": "unit",
+                "value": "celsius"
               },
               {
                 "id": "max",
@@ -376,7 +392,7 @@
           ],
           "orderByTime": "DESC",
           "policy": "default",
-          "query": "SELECT (mean(\"memtotal\") - mean(\"memfree\") - mean(\"membuffers\") - mean(\"memcache\")) as \"RAM Usage\" FROM \"system\" WHERE $timeFilter GROUP BY time($__interval) fill(null)",
+          "query": "SELECT (mean(\"memtotal\") - mean(\"memfree\") - mean(\"membuffers\") - mean(\"memcache\")) as \"RAM\" FROM \"system\" WHERE $timeFilter GROUP BY time($__interval) fill(null)",
           "rawQuery": true,
           "refId": "A",
           "resultFormat": "time_series",
@@ -412,7 +428,7 @@
           ],
           "orderByTime": "DESC",
           "policy": "default",
-          "query": "SELECT mean(\"cpuload\") as \"CPU Usage\" FROM \"system\" WHERE $timeFilter GROUP BY time($__interval) fill(null)",
+          "query": "SELECT mean(\"cpuload\") as \"CPU\" FROM \"system\" WHERE $timeFilter GROUP BY time($__interval) fill(null)",
           "rawQuery": true,
           "refId": "B",
           "resultFormat": "time_series",
@@ -431,7 +447,7 @@
           "tags": []
         },
         {
-          "alias": "Temperature",
+          "alias": "$col",
           "datasource": {
             "type": "influxdb",
             "uid": "${DS_INFLUXDB}"
@@ -450,6 +466,8 @@
           "measurement": "interface",
           "orderByTime": "DESC",
           "policy": "autogen",
+          "query": "SELECT mean(\"temperature\") as \"Sıcaklık\" FROM \"interface\" WHERE $timeFilter GROUP BY time($__interval) fill(null)",
+          "rawQuery": true,
           "refId": "C",
           "resultFormat": "time_series",
           "select": [
@@ -467,7 +485,7 @@
           "tags": []
         }
       ],
-      "title": "Average system usage",
+      "title": "Sistem Ortalamaları",
       "type": "gauge"
     },
     {
@@ -482,10 +500,14 @@
             {
               "options": {
                 "0": {
-                  "text": "Fail"
+                  "color": "dark-red",
+                  "index": 1,
+                  "text": "❗️"
                 },
                 "1": {
-                  "text": "OK"
+                  "color": "dark-green",
+                  "index": 0,
+                  "text": "✅"
                 }
               },
               "type": "value"
@@ -571,7 +593,7 @@
           "tags": []
         }
       ],
-      "title": "Internet status",
+      "title": "Bağlantı Durumu",
       "type": "gauge"
     },
     {
@@ -722,7 +744,7 @@
           ]
         }
       ],
-      "title": "Data usage",
+      "title": "Kaynak Kullanımı",
       "type": "timeseries"
     },
     {
@@ -862,7 +884,7 @@
           "resultFormat": "time_series"
         }
       ],
-      "title": "Wi-Fi Clients TX Rate",
+      "title": "Wi-Fi İstemcileri TX Oranı",
       "type": "timeseries"
     },
     {
@@ -1002,7 +1024,7 @@
           "resultFormat": "time_series"
         }
       ],
-      "title": "Wi-Fi Clients signal level",
+      "title": "Wi-Fi İstemcileri Sinyal Seviyesi",
       "type": "timeseries"
     },
     {
@@ -1169,7 +1191,7 @@
           "tags": []
         }
       ],
-      "title": "Interfaces rate",
+      "title": "Arayüz Oranları",
       "type": "timeseries"
     },
     {
@@ -1336,7 +1358,7 @@
           "tags": []
         }
       ],
-      "title": "Interfaces data transfered",
+      "title": "Aktarılan Arayüz Verileri",
       "type": "timeseries"
     },
     {
@@ -1463,7 +1485,7 @@
           "tags": []
         }
       ],
-      "title": "Scrape duration",
+      "title": "Veri Akış Süreleri",
       "type": "timeseries"
     },
     {
@@ -1548,7 +1570,7 @@
       "pluginVersion": "9.5.2",
       "targets": [
         {
-          "alias": "NAT Sessions",
+          "alias": "$col",
           "datasource": {
             "type": "influxdb",
             "uid": "${DS_INFLUXDB}"
@@ -1566,6 +1588,8 @@
           "measurement": "ip nat",
           "orderByTime": "DESC",
           "policy": "default",
+          "query": "SELECT count(\"bytes\") as \"NAT Oturumları\" FROM \"ip nat\" WHERE $timeFilter GROUP BY time($__interval) fill(none)",
+          "rawQuery": true,
           "refId": "A",
           "resultFormat": "time_series",
           "select": [
@@ -1583,7 +1607,7 @@
           "tags": []
         }
       ],
-      "title": "NAT Sessions",
+      "title": "NAT Oturumları",
       "type": "timeseries"
     },
     {
@@ -1714,7 +1738,7 @@
           "tags": []
         }
       ],
-      "title": "Free media space",
+      "title": "Boş Disk Alanları",
       "type": "timeseries"
     },
     {
@@ -1802,7 +1826,7 @@
       "pluginVersion": "9.5.2",
       "targets": [
         {
-          "alias": "CPU Load",
+          "alias": "$col",
           "datasource": {
             "type": "influxdb",
             "uid": "${DS_INFLUXDB}"
@@ -1819,7 +1843,9 @@
           ],
           "measurement": "system",
           "orderByTime": "DESC",
-          "policy": "default",
+          "policy": "autogen",
+          "query": "SELECT mean(\"cpuload\") as \"CPU Yükü\" FROM \"system\" WHERE $timeFilter GROUP BY time($__interval) fill(null)",
+          "rawQuery": true,
           "refId": "A",
           "resultFormat": "time_series",
           "select": [
@@ -1837,7 +1863,7 @@
           "tags": []
         }
       ],
-      "title": "CPU Load",
+      "title": "CPU Yükü",
       "type": "timeseries"
     },
     {
@@ -1907,7 +1933,7 @@
           {
             "matcher": {
               "id": "byName",
-              "options": "RAM Usage"
+              "options": "RAM Kullanımı"
             },
             "properties": [
               {
@@ -1943,7 +1969,7 @@
       "pluginVersion": "9.5.2",
       "targets": [
         {
-          "alias": "RAM Usage",
+          "alias": "$col",
           "datasource": {
             "type": "influxdb",
             "uid": "${DS_INFLUXDB}"
@@ -1961,7 +1987,7 @@
           "measurement": "system",
           "orderByTime": "DESC",
           "policy": "default",
-          "query": "SELECT mean(\"memtotal\") - mean(\"memfree\") FROM \"system\" WHERE $timeFilter GROUP BY time($__interval) fill(null)",
+          "query": "SELECT mean(\"memtotal\") - mean(\"memfree\") as \"RAM Kullanımı\" FROM \"system\" WHERE $timeFilter GROUP BY time($__interval) fill(null)",
           "rawQuery": true,
           "refId": "A",
           "resultFormat": "time_series",
@@ -1980,7 +2006,7 @@
           "tags": []
         }
       ],
-      "title": "RAM Usage",
+      "title": "RAM Kullanımı",
       "type": "timeseries"
     },
     {
@@ -2043,7 +2069,27 @@
             ]
           }
         },
-        "overrides": []
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Sıcaklık"
+            },
+            "properties": [
+              {
+                "id": "unit",
+                "value": "celsius"
+              },
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "purple",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          }
+        ]
       },
       "gridPos": {
         "h": 7,
@@ -2060,13 +2106,13 @@
           "showLegend": true
         },
         "tooltip": {
-          "mode": "none",
+          "mode": "multi",
           "sort": "none"
         }
       },
       "targets": [
         {
-          "alias": "Temperature",
+          "alias": "$col",
           "datasource": {
             "type": "influxdb",
             "uid": "${DS_INFLUXDB}"
@@ -2075,6 +2121,8 @@
           "measurement": "interface",
           "orderByTime": "DESC",
           "policy": "autogen",
+          "query": "SELECT \"temperature\" as \"Sıcaklık\" FROM \"interface\" WHERE $timeFilter fill(null)",
+          "rawQuery": true,
           "refId": "A",
           "resultFormat": "time_series",
           "select": [
@@ -2088,7 +2136,7 @@
           "tags": []
         }
       ],
-      "title": "Temperature",
+      "title": "Sıcaklık",
       "type": "timeseries"
     },
     {
@@ -2246,7 +2294,7 @@
           "tags": []
         }
       ],
-      "title": "Processes",
+      "title": "Süreçler",
       "type": "table"
     },
     {
@@ -2406,7 +2454,7 @@
           "tags": []
         }
       ],
-      "title": "Interfaces",
+      "title": "Arayüzler",
       "type": "table"
     }
   ],
