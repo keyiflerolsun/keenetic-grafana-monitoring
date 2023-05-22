@@ -130,7 +130,7 @@
             }
           ],
           "measurement": "ip hotspot",
-          "orderByTime": "ASC",
+          "orderByTime": "DESC",
           "policy": "default",
           "query": "SELECT last(\"speed\") as \"Ethernet\" FROM \"ip hotspot\" WHERE \"time\" > now() - 1m AND \"active\" = 1 AND $timeFilter GROUP BY \"mac\"",
           "rawQuery": true,
@@ -173,7 +173,7 @@
             }
           ],
           "hide": false,
-          "orderByTime": "ASC",
+          "orderByTime": "DESC",
           "policy": "default",
           "query": "SELECT last(\"signal\") as \"Wi-Fi (Router)\", last(\"mesh_signal\") as \"Wi-Fi (Mesh)\" FROM \"ip hotspot\"  WHERE  \"time\" > now() - 1m AND \"active\" = 1 AND $timeFilter GROUP BY \"mac\"",
           "rawQuery": true,
@@ -257,7 +257,7 @@
             }
           ],
           "measurement": "system",
-          "orderByTime": "ASC",
+          "orderByTime": "DESC",
           "policy": "default",
           "query": "SELECT last(\"uptime\") FROM \"system\" LIMIT 1",
           "rawQuery": true,
@@ -340,7 +340,7 @@
       },
       "gridPos": {
         "h": 5,
-        "w": 6,
+        "w": 8,
         "x": 9,
         "y": 0
       },
@@ -374,7 +374,7 @@
               "type": "fill"
             }
           ],
-          "orderByTime": "ASC",
+          "orderByTime": "DESC",
           "policy": "default",
           "query": "SELECT (mean(\"memtotal\") - mean(\"memfree\") - mean(\"membuffers\") - mean(\"memcache\")) as \"RAM Usage\" FROM \"system\" WHERE $timeFilter GROUP BY time($__interval) fill(null)",
           "rawQuery": true,
@@ -410,7 +410,7 @@
               "type": "fill"
             }
           ],
-          "orderByTime": "ASC",
+          "orderByTime": "DESC",
           "policy": "default",
           "query": "SELECT mean(\"cpuload\") as \"CPU Usage\" FROM \"system\" WHERE $timeFilter GROUP BY time($__interval) fill(null)",
           "rawQuery": true,
@@ -448,7 +448,7 @@
           ],
           "hide": false,
           "measurement": "interface",
-          "orderByTime": "ASC",
+          "orderByTime": "DESC",
           "policy": "autogen",
           "refId": "C",
           "resultFormat": "time_series",
@@ -515,8 +515,8 @@
       },
       "gridPos": {
         "h": 5,
-        "w": 9,
-        "x": 15,
+        "w": 7,
+        "x": 17,
         "y": 0
       },
       "id": 25,
@@ -550,7 +550,7 @@
             }
           ],
           "measurement": "internet status",
-          "orderByTime": "ASC",
+          "orderByTime": "DESC",
           "policy": "default",
           "query": "SELECT last(\"internet\") as \"Internet\", last(\"dns-accessible\") as \"DNS\", last(\"gateway-accessible\") as \"Gateway\" FROM \"internet status\" WHERE $timeFilter",
           "rawQuery": true,
@@ -629,7 +629,7 @@
               }
             ]
           },
-          "unit": "bytes"
+          "unit": "Mbits"
         },
         "overrides": []
       },
@@ -639,23 +639,24 @@
         "x": 0,
         "y": 5
       },
-      "id": 14,
+      "id": 5,
+      "interval": "",
       "options": {
         "legend": {
-          "calcs": ["sum"],
+          "calcs": ["mean"],
           "displayMode": "table",
           "placement": "right",
           "showLegend": true
         },
         "tooltip": {
           "mode": "multi",
-          "sort": "none"
+          "sort": "desc"
         }
       },
       "pluginVersion": "9.5.2",
       "targets": [
         {
-          "alias": "Upload - $tag_name",
+          "alias": "$tag_name [$tag_mode]",
           "datasource": {
             "type": "influxdb",
             "uid": "${DS_INFLUXDB}"
@@ -670,61 +671,21 @@
               "type": "tag"
             },
             {
-              "params": ["previous"],
+              "params": ["none"],
               "type": "fill"
             }
           ],
-          "measurement": "interface stat",
-          "orderByTime": "ASC",
+          "measurement": "ip hotspot",
+          "orderByTime": "DESC",
           "policy": "default",
-          "query": "SELECT non_negative_difference(mean(\"txbytes\")) FROM \"interface stat\" WHERE $timeFilter GROUP BY time($__interval), \"name\" fill(null)",
-          "rawQuery": true,
-          "refId": "B",
-          "resultFormat": "time_series",
-          "select": [
-            [
-              {
-                "params": ["txbytes"],
-                "type": "field"
-              },
-              {
-                "params": [],
-                "type": "sum"
-              },
-              {
-                "params": [],
-                "type": "non_negative_difference"
-              }
-            ]
-          ],
-          "tags": []
-        },
-        {
-          "alias": "Download - $tag_name",
-          "datasource": {
-            "type": "influxdb",
-            "uid": "${DS_INFLUXDB}"
-          },
-          "groupBy": [
-            {
-              "params": ["$__interval"],
-              "type": "time"
-            },
-            {
-              "params": ["null"],
-              "type": "fill"
-            }
-          ],
-          "orderByTime": "ASC",
-          "policy": "default",
-          "query": "SELECT non_negative_difference(mean(\"rxbytes\")) FROM \"interface stat\" WHERE $timeFilter GROUP BY time($__interval), \"name\" fill(null)",
+          "query": "SELECT mean(\"txrate\") FROM \"ip hotspot\" WHERE $timeFilter AND \"active\" = 1 AND \"mode\" != \"\" GROUP BY time($__interval), \"name\", \"mode\" fill(null) ORDER BY time DESC",
           "rawQuery": true,
           "refId": "A",
           "resultFormat": "time_series",
           "select": [
             [
               {
-                "params": ["value"],
+                "params": ["txrate"],
                 "type": "field"
               },
               {
@@ -734,9 +695,21 @@
             ]
           ],
           "tags": []
+        },
+        {
+          "alias": "$tag_name [$tag_meshmode]",
+          "datasource": {
+            "type": "influxdb",
+            "uid": "${DS_INFLUXDB}"
+          },
+          "hide": false,
+          "query": "SELECT mean(\"mesh_txrate\") FROM \"ip hotspot\" WHERE $timeFilter AND \"active\" = 1 AND \"meshmode\" != \"\" GROUP BY time($__interval), \"name\", \"meshmode\" fill(null) ORDER BY time DESC",
+          "rawQuery": true,
+          "refId": "B",
+          "resultFormat": "time_series"
         }
       ],
-      "title": "Interfaces data transfered",
+      "title": "Wi-Fi Clients TX Rate",
       "type": "timeseries"
     },
     {
@@ -794,7 +767,7 @@
               }
             ]
           },
-          "unit": "Bps"
+          "unit": "dBm"
         },
         "overrides": []
       },
@@ -804,23 +777,24 @@
         "x": 12,
         "y": 5
       },
-      "id": 31,
+      "id": 2,
+      "interval": "",
       "options": {
         "legend": {
-          "calcs": ["mean", "max"],
+          "calcs": ["lastNotNull"],
           "displayMode": "table",
           "placement": "right",
           "showLegend": true
         },
         "tooltip": {
           "mode": "multi",
-          "sort": "none"
+          "sort": "desc"
         }
       },
       "pluginVersion": "9.5.2",
       "targets": [
         {
-          "alias": "Upload - $tag_name",
+          "alias": "$tag_name [$tag_mode]",
           "datasource": {
             "type": "influxdb",
             "uid": "${DS_INFLUXDB}"
@@ -835,61 +809,21 @@
               "type": "tag"
             },
             {
-              "params": ["previous"],
+              "params": ["none"],
               "type": "fill"
             }
           ],
-          "measurement": "interface stat",
-          "orderByTime": "ASC",
+          "measurement": "ip hotspot",
+          "orderByTime": "DESC",
           "policy": "default",
-          "query": "SELECT(mean(\"txspeed\")) FROM \"interface stat\" WHERE $timeFilter GROUP BY time($__interval), \"name\" fill(null)",
-          "rawQuery": true,
-          "refId": "B",
-          "resultFormat": "time_series",
-          "select": [
-            [
-              {
-                "params": ["txbytes"],
-                "type": "field"
-              },
-              {
-                "params": [],
-                "type": "sum"
-              },
-              {
-                "params": [],
-                "type": "non_negative_difference"
-              }
-            ]
-          ],
-          "tags": []
-        },
-        {
-          "alias": "Download - $tag_name",
-          "datasource": {
-            "type": "influxdb",
-            "uid": "${DS_INFLUXDB}"
-          },
-          "groupBy": [
-            {
-              "params": ["$__interval"],
-              "type": "time"
-            },
-            {
-              "params": ["null"],
-              "type": "fill"
-            }
-          ],
-          "orderByTime": "ASC",
-          "policy": "default",
-          "query": "SELECT(mean(\"rxspeed\")) FROM \"interface stat\" WHERE $timeFilter GROUP BY time($__interval), \"name\" fill(null)",
+          "query": "SELECT mean(\"signal\") FROM \"ip hotspot\" WHERE $timeFilter AND \"active\" = 1 GROUP BY time($__interval), \"name\", \"mode\" fill(null) ORDER BY time DESC",
           "rawQuery": true,
           "refId": "A",
           "resultFormat": "time_series",
           "select": [
             [
               {
-                "params": ["value"],
+                "params": ["signal"],
                 "type": "field"
               },
               {
@@ -899,9 +833,21 @@
             ]
           ],
           "tags": []
+        },
+        {
+          "alias": "$tag_name [$tag_meshmode]",
+          "datasource": {
+            "type": "influxdb",
+            "uid": "${DS_INFLUXDB}"
+          },
+          "hide": false,
+          "query": "SELECT mean(\"mesh_signal\") FROM \"ip hotspot\" WHERE $timeFilter AND \"active\" = 1 GROUP BY time($__interval), \"name\", \"meshmode\" fill(null) ORDER BY time DESC",
+          "rawQuery": true,
+          "refId": "B",
+          "resultFormat": "time_series"
         }
       ],
-      "title": "Interfaces rate",
+      "title": "Wi-Fi Clients signal level",
       "type": "timeseries"
     },
     {
@@ -979,7 +925,7 @@
         },
         "tooltip": {
           "mode": "multi",
-          "sort": "none"
+          "sort": "desc"
         }
       },
       "pluginVersion": "9.5.2",
@@ -1005,7 +951,7 @@
             }
           ],
           "measurement": "ip hotspot",
-          "orderByTime": "ASC",
+          "orderByTime": "DESC",
           "policy": "default",
           "query": "SELECT non_negative_difference(mean(\"rxbytes\")) + non_negative_difference(mean(\"txbytes\")) FROM \"ip hotspot\" WHERE $timeFilter AND \"active\" = 1 GROUP BY time($__interval), \"name\" fill(null)",
           "rawQuery": true,
@@ -1093,402 +1039,6 @@
               "mode": "off"
             }
           },
-          "decimals": 0,
-          "links": [],
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": null
-              },
-              {
-                "color": "red",
-                "value": 80
-              }
-            ]
-          },
-          "unit": "short"
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 8,
-        "w": 12,
-        "x": 12,
-        "y": 13
-      },
-      "id": 7,
-      "options": {
-        "legend": {
-          "calcs": [],
-          "displayMode": "list",
-          "placement": "bottom",
-          "showLegend": true
-        },
-        "tooltip": {
-          "mode": "multi",
-          "sort": "none"
-        }
-      },
-      "pluginVersion": "9.5.2",
-      "targets": [
-        {
-          "alias": "NAT Sessions",
-          "datasource": {
-            "type": "influxdb",
-            "uid": "${DS_INFLUXDB}"
-          },
-          "groupBy": [
-            {
-              "params": ["$__interval"],
-              "type": "time"
-            },
-            {
-              "params": ["none"],
-              "type": "fill"
-            }
-          ],
-          "measurement": "ip nat",
-          "orderByTime": "ASC",
-          "policy": "default",
-          "refId": "A",
-          "resultFormat": "time_series",
-          "select": [
-            [
-              {
-                "params": ["bytes"],
-                "type": "field"
-              },
-              {
-                "params": [],
-                "type": "count"
-              }
-            ]
-          ],
-          "tags": []
-        }
-      ],
-      "title": "NAT Sessions",
-      "type": "timeseries"
-    },
-    {
-      "datasource": {
-        "type": "influxdb",
-        "uid": "${DS_INFLUXDB}"
-      },
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "palette-classic"
-          },
-          "custom": {
-            "axisCenteredZero": false,
-            "axisColorMode": "text",
-            "axisLabel": "",
-            "axisPlacement": "auto",
-            "barAlignment": 0,
-            "drawStyle": "line",
-            "fillOpacity": 10,
-            "gradientMode": "none",
-            "hideFrom": {
-              "legend": false,
-              "tooltip": false,
-              "viz": false
-            },
-            "lineInterpolation": "linear",
-            "lineWidth": 1,
-            "pointSize": 5,
-            "scaleDistribution": {
-              "type": "linear"
-            },
-            "showPoints": "never",
-            "spanNulls": false,
-            "stacking": {
-              "group": "A",
-              "mode": "none"
-            },
-            "thresholdsStyle": {
-              "mode": "off"
-            }
-          },
-          "links": [],
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": null
-              },
-              {
-                "color": "red",
-                "value": 80
-              }
-            ]
-          },
-          "unit": "Mbits"
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 8,
-        "w": 12,
-        "x": 0,
-        "y": 21
-      },
-      "id": 5,
-      "interval": "",
-      "options": {
-        "legend": {
-          "calcs": ["mean"],
-          "displayMode": "table",
-          "placement": "right",
-          "showLegend": true
-        },
-        "tooltip": {
-          "mode": "multi",
-          "sort": "none"
-        }
-      },
-      "pluginVersion": "9.5.2",
-      "targets": [
-        {
-          "alias": "$tag_name [$tag_mode]",
-          "datasource": {
-            "type": "influxdb",
-            "uid": "${DS_INFLUXDB}"
-          },
-          "groupBy": [
-            {
-              "params": ["$__interval"],
-              "type": "time"
-            },
-            {
-              "params": ["name"],
-              "type": "tag"
-            },
-            {
-              "params": ["none"],
-              "type": "fill"
-            }
-          ],
-          "measurement": "ip hotspot",
-          "orderByTime": "ASC",
-          "policy": "default",
-          "query": "SELECT mean(\"txrate\") FROM \"ip hotspot\" WHERE $timeFilter AND \"active\" = 1 AND \"mode\" != \"\" GROUP BY time($__interval), \"name\", \"mode\" fill(null)",
-          "rawQuery": true,
-          "refId": "A",
-          "resultFormat": "time_series",
-          "select": [
-            [
-              {
-                "params": ["txrate"],
-                "type": "field"
-              },
-              {
-                "params": [],
-                "type": "mean"
-              }
-            ]
-          ],
-          "tags": []
-        },
-        {
-          "alias": "$tag_name [$tag_meshmode]",
-          "datasource": {
-            "type": "influxdb",
-            "uid": "${DS_INFLUXDB}"
-          },
-          "hide": false,
-          "query": "SELECT mean(\"mesh_txrate\") FROM \"ip hotspot\" WHERE $timeFilter AND \"active\" = 1 AND \"meshmode\" != \"\" GROUP BY time($__interval), \"name\", \"meshmode\" fill(null)",
-          "rawQuery": true,
-          "refId": "B",
-          "resultFormat": "time_series"
-        }
-      ],
-      "title": "Wi-Fi Clients TX Rate",
-      "type": "timeseries"
-    },
-    {
-      "datasource": {
-        "type": "influxdb",
-        "uid": "${DS_INFLUXDB}"
-      },
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "palette-classic"
-          },
-          "custom": {
-            "axisCenteredZero": false,
-            "axisColorMode": "text",
-            "axisLabel": "",
-            "axisPlacement": "auto",
-            "barAlignment": 0,
-            "drawStyle": "line",
-            "fillOpacity": 10,
-            "gradientMode": "none",
-            "hideFrom": {
-              "legend": false,
-              "tooltip": false,
-              "viz": false
-            },
-            "lineInterpolation": "linear",
-            "lineWidth": 1,
-            "pointSize": 5,
-            "scaleDistribution": {
-              "type": "linear"
-            },
-            "showPoints": "never",
-            "spanNulls": false,
-            "stacking": {
-              "group": "A",
-              "mode": "none"
-            },
-            "thresholdsStyle": {
-              "mode": "off"
-            }
-          },
-          "links": [],
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": null
-              },
-              {
-                "color": "red",
-                "value": 80
-              }
-            ]
-          },
-          "unit": "dBm"
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 8,
-        "w": 12,
-        "x": 12,
-        "y": 21
-      },
-      "id": 2,
-      "interval": "",
-      "options": {
-        "legend": {
-          "calcs": ["lastNotNull"],
-          "displayMode": "table",
-          "placement": "right",
-          "showLegend": true
-        },
-        "tooltip": {
-          "mode": "multi",
-          "sort": "none"
-        }
-      },
-      "pluginVersion": "9.5.2",
-      "targets": [
-        {
-          "alias": "$tag_name [$tag_mode]",
-          "datasource": {
-            "type": "influxdb",
-            "uid": "${DS_INFLUXDB}"
-          },
-          "groupBy": [
-            {
-              "params": ["$__interval"],
-              "type": "time"
-            },
-            {
-              "params": ["name"],
-              "type": "tag"
-            },
-            {
-              "params": ["none"],
-              "type": "fill"
-            }
-          ],
-          "measurement": "ip hotspot",
-          "orderByTime": "ASC",
-          "policy": "default",
-          "query": "SELECT mean(\"signal\") FROM \"ip hotspot\" WHERE $timeFilter AND \"active\" = 1 GROUP BY time($__interval), \"name\", \"mode\" fill(null)",
-          "rawQuery": true,
-          "refId": "A",
-          "resultFormat": "time_series",
-          "select": [
-            [
-              {
-                "params": ["signal"],
-                "type": "field"
-              },
-              {
-                "params": [],
-                "type": "mean"
-              }
-            ]
-          ],
-          "tags": []
-        },
-        {
-          "alias": "$tag_name [$tag_meshmode]",
-          "datasource": {
-            "type": "influxdb",
-            "uid": "${DS_INFLUXDB}"
-          },
-          "hide": false,
-          "query": "SELECT mean(\"mesh_signal\") FROM \"ip hotspot\" WHERE $timeFilter AND \"active\" = 1 GROUP BY time($__interval), \"name\", \"meshmode\" fill(null)",
-          "rawQuery": true,
-          "refId": "B",
-          "resultFormat": "time_series"
-        }
-      ],
-      "title": "Wi-Fi Clients signal level",
-      "type": "timeseries"
-    },
-    {
-      "datasource": {
-        "type": "influxdb",
-        "uid": "${DS_INFLUXDB}"
-      },
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "palette-classic"
-          },
-          "custom": {
-            "axisCenteredZero": false,
-            "axisColorMode": "text",
-            "axisLabel": "",
-            "axisPlacement": "auto",
-            "barAlignment": 0,
-            "drawStyle": "line",
-            "fillOpacity": 10,
-            "gradientMode": "none",
-            "hideFrom": {
-              "legend": false,
-              "tooltip": false,
-              "viz": false
-            },
-            "lineInterpolation": "linear",
-            "lineWidth": 1,
-            "pointSize": 5,
-            "scaleDistribution": {
-              "type": "linear"
-            },
-            "showPoints": "never",
-            "spanNulls": false,
-            "stacking": {
-              "group": "A",
-              "mode": "none"
-            },
-            "thresholdsStyle": {
-              "mode": "off"
-            }
-          },
           "decimals": 2,
           "links": [],
           "mappings": [],
@@ -1513,8 +1063,8 @@
       "gridPos": {
         "h": 8,
         "w": 12,
-        "x": 0,
-        "y": 29
+        "x": 12,
+        "y": 13
       },
       "id": 30,
       "options": {
@@ -1552,7 +1102,7 @@
             }
           ],
           "measurement": "collector",
-          "orderByTime": "ASC",
+          "orderByTime": "DESC",
           "policy": "default",
           "refId": "A",
           "resultFormat": "time_series",
@@ -1572,6 +1122,456 @@
         }
       ],
       "title": "Scrape duration",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "influxdb",
+        "uid": "${DS_INFLUXDB}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 10,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "never",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "links": [],
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "bytes"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 0,
+        "y": 21
+      },
+      "id": 14,
+      "options": {
+        "legend": {
+          "calcs": ["sum"],
+          "displayMode": "table",
+          "placement": "right",
+          "showLegend": true
+        },
+        "tooltip": {
+          "mode": "multi",
+          "sort": "desc"
+        }
+      },
+      "pluginVersion": "9.5.2",
+      "targets": [
+        {
+          "alias": "Upload - $tag_name",
+          "datasource": {
+            "type": "influxdb",
+            "uid": "${DS_INFLUXDB}"
+          },
+          "groupBy": [
+            {
+              "params": ["$__interval"],
+              "type": "time"
+            },
+            {
+              "params": ["name"],
+              "type": "tag"
+            },
+            {
+              "params": ["previous"],
+              "type": "fill"
+            }
+          ],
+          "measurement": "interface stat",
+          "orderByTime": "DESC",
+          "policy": "default",
+          "query": "SELECT non_negative_difference(mean(\"txbytes\")) FROM \"interface stat\" WHERE $timeFilter GROUP BY time($__interval), \"name\" fill(null)",
+          "rawQuery": true,
+          "refId": "B",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": ["txbytes"],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "sum"
+              },
+              {
+                "params": [],
+                "type": "non_negative_difference"
+              }
+            ]
+          ],
+          "tags": []
+        },
+        {
+          "alias": "Download - $tag_name",
+          "datasource": {
+            "type": "influxdb",
+            "uid": "${DS_INFLUXDB}"
+          },
+          "groupBy": [
+            {
+              "params": ["$__interval"],
+              "type": "time"
+            },
+            {
+              "params": ["null"],
+              "type": "fill"
+            }
+          ],
+          "orderByTime": "DESC",
+          "policy": "default",
+          "query": "SELECT non_negative_difference(mean(\"rxbytes\")) FROM \"interface stat\" WHERE $timeFilter GROUP BY time($__interval), \"name\" fill(null)",
+          "rawQuery": true,
+          "refId": "A",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": ["value"],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "mean"
+              }
+            ]
+          ],
+          "tags": []
+        }
+      ],
+      "title": "Interfaces data transfered",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "influxdb",
+        "uid": "${DS_INFLUXDB}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 10,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "never",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "links": [],
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "Bps"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 12,
+        "y": 21
+      },
+      "id": 31,
+      "options": {
+        "legend": {
+          "calcs": ["mean", "max"],
+          "displayMode": "table",
+          "placement": "right",
+          "showLegend": true
+        },
+        "tooltip": {
+          "mode": "multi",
+          "sort": "desc"
+        }
+      },
+      "pluginVersion": "9.5.2",
+      "targets": [
+        {
+          "alias": "Upload - $tag_name",
+          "datasource": {
+            "type": "influxdb",
+            "uid": "${DS_INFLUXDB}"
+          },
+          "groupBy": [
+            {
+              "params": ["$__interval"],
+              "type": "time"
+            },
+            {
+              "params": ["name"],
+              "type": "tag"
+            },
+            {
+              "params": ["previous"],
+              "type": "fill"
+            }
+          ],
+          "measurement": "interface stat",
+          "orderByTime": "DESC",
+          "policy": "default",
+          "query": "SELECT(mean(\"txspeed\")) FROM \"interface stat\" WHERE $timeFilter GROUP BY time($__interval), \"name\" fill(null)",
+          "rawQuery": true,
+          "refId": "B",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": ["txbytes"],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "sum"
+              },
+              {
+                "params": [],
+                "type": "non_negative_difference"
+              }
+            ]
+          ],
+          "tags": []
+        },
+        {
+          "alias": "Download - $tag_name",
+          "datasource": {
+            "type": "influxdb",
+            "uid": "${DS_INFLUXDB}"
+          },
+          "groupBy": [
+            {
+              "params": ["$__interval"],
+              "type": "time"
+            },
+            {
+              "params": ["null"],
+              "type": "fill"
+            }
+          ],
+          "orderByTime": "DESC",
+          "policy": "default",
+          "query": "SELECT(mean(\"rxspeed\")) FROM \"interface stat\" WHERE $timeFilter GROUP BY time($__interval), \"name\" fill(null)",
+          "rawQuery": true,
+          "refId": "A",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": ["value"],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "mean"
+              }
+            ]
+          ],
+          "tags": []
+        }
+      ],
+      "title": "Interfaces rate",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "influxdb",
+        "uid": "${DS_INFLUXDB}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 10,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "never",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "decimals": 0,
+          "links": [],
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "short"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 0,
+        "y": 29
+      },
+      "id": 7,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "mode": "multi",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "9.5.2",
+      "targets": [
+        {
+          "alias": "NAT Sessions",
+          "datasource": {
+            "type": "influxdb",
+            "uid": "${DS_INFLUXDB}"
+          },
+          "groupBy": [
+            {
+              "params": ["$__interval"],
+              "type": "time"
+            },
+            {
+              "params": ["none"],
+              "type": "fill"
+            }
+          ],
+          "measurement": "ip nat",
+          "orderByTime": "DESC",
+          "policy": "default",
+          "refId": "A",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": ["bytes"],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "count"
+              }
+            ]
+          ],
+          "tags": []
+        }
+      ],
+      "title": "NAT Sessions",
       "type": "timeseries"
     },
     {
@@ -1681,7 +1681,7 @@
             }
           ],
           "measurement": "media",
-          "orderByTime": "ASC",
+          "orderByTime": "DESC",
           "policy": "default",
           "refId": "A",
           "resultFormat": "time_series",
@@ -1804,7 +1804,7 @@
             }
           ],
           "measurement": "system",
-          "orderByTime": "ASC",
+          "orderByTime": "DESC",
           "policy": "default",
           "refId": "A",
           "resultFormat": "time_series",
@@ -1945,7 +1945,7 @@
             }
           ],
           "measurement": "system",
-          "orderByTime": "ASC",
+          "orderByTime": "DESC",
           "policy": "default",
           "query": "SELECT mean(\"memtotal\") - mean(\"memfree\") FROM \"system\" WHERE $timeFilter GROUP BY time($__interval) fill(null)",
           "rawQuery": true,
@@ -2058,7 +2058,7 @@
           },
           "groupBy": [],
           "measurement": "interface",
-          "orderByTime": "ASC",
+          "orderByTime": "DESC",
           "policy": "autogen",
           "refId": "A",
           "resultFormat": "logs",
@@ -2192,7 +2192,7 @@
             }
           ],
           "measurement": "processes",
-          "orderByTime": "ASC",
+          "orderByTime": "DESC",
           "policy": "default",
           "query": "SELECT mean(\"cpu\") AS \"CPU\", mean(\"memory\") AS \"RAM\" FROM \"processes\" WHERE $timeFilter GROUP BY \"name\"",
           "rawQuery": true,
@@ -2370,7 +2370,7 @@
             }
           ],
           "measurement": "interface",
-          "orderByTime": "ASC",
+          "orderByTime": "DESC",
           "policy": "default",
           "query": "SELECT last(\"state\") as \"State\" FROM \"interface\" WHERE $timeFilter AND \"description\" != '' GROUP BY \"description\"",
           "rawQuery": true,
