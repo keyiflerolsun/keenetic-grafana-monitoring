@@ -104,9 +104,7 @@
         "justifyMode": "center",
         "orientation": "auto",
         "reduceOptions": {
-          "calcs": [
-            "count"
-          ],
+          "calcs": ["count"],
           "fields": "",
           "values": false
         },
@@ -123,15 +121,11 @@
           },
           "groupBy": [
             {
-              "params": [
-                "$__interval"
-              ],
+              "params": ["$__interval"],
               "type": "time"
             },
             {
-              "params": [
-                "previous"
-              ],
+              "params": ["previous"],
               "type": "fill"
             }
           ],
@@ -145,9 +139,7 @@
           "select": [
             [
               {
-                "params": [
-                  "speed"
-                ],
+                "params": ["speed"],
                 "type": "field"
               },
               {
@@ -172,15 +164,11 @@
           },
           "groupBy": [
             {
-              "params": [
-                "$__interval"
-              ],
+              "params": ["$__interval"],
               "type": "time"
             },
             {
-              "params": [
-                "null"
-              ],
+              "params": ["null"],
               "type": "fill"
             }
           ],
@@ -194,9 +182,7 @@
           "select": [
             [
               {
-                "params": [
-                  "value"
-                ],
+                "params": ["value"],
                 "type": "field"
               },
               {
@@ -246,9 +232,7 @@
         "justifyMode": "auto",
         "orientation": "auto",
         "reduceOptions": {
-          "calcs": [
-            "last"
-          ],
+          "calcs": ["last"],
           "fields": "",
           "values": false
         },
@@ -264,15 +248,11 @@
           },
           "groupBy": [
             {
-              "params": [
-                "$__interval"
-              ],
+              "params": ["$__interval"],
               "type": "time"
             },
             {
-              "params": [
-                "null"
-              ],
+              "params": ["null"],
               "type": "fill"
             }
           ],
@@ -286,9 +266,7 @@
           "select": [
             [
               {
-                "params": [
-                  "value"
-                ],
+                "params": ["value"],
                 "type": "field"
               },
               {
@@ -386,9 +364,7 @@
       "options": {
         "orientation": "auto",
         "reduceOptions": {
-          "calcs": [
-            "mean"
-          ],
+          "calcs": ["mean"],
           "fields": "",
           "values": false
         },
@@ -406,15 +382,11 @@
           },
           "groupBy": [
             {
-              "params": [
-                "$__interval"
-              ],
+              "params": ["$__interval"],
               "type": "time"
             },
             {
-              "params": [
-                "null"
-              ],
+              "params": ["null"],
               "type": "fill"
             }
           ],
@@ -427,9 +399,7 @@
           "select": [
             [
               {
-                "params": [
-                  "value"
-                ],
+                "params": ["value"],
                 "type": "field"
               },
               {
@@ -448,15 +418,11 @@
           },
           "groupBy": [
             {
-              "params": [
-                "$__interval"
-              ],
+              "params": ["$__interval"],
               "type": "time"
             },
             {
-              "params": [
-                "null"
-              ],
+              "params": ["null"],
               "type": "fill"
             }
           ],
@@ -469,9 +435,7 @@
           "select": [
             [
               {
-                "params": [
-                  "value"
-                ],
+                "params": ["value"],
                 "type": "field"
               },
               {
@@ -490,15 +454,11 @@
           },
           "groupBy": [
             {
-              "params": [
-                "$__interval"
-              ],
+              "params": ["$__interval"],
               "type": "time"
             },
             {
-              "params": [
-                "null"
-              ],
+              "params": ["null"],
               "type": "fill"
             }
           ],
@@ -513,9 +473,7 @@
           "select": [
             [
               {
-                "params": [
-                  "temperature"
-                ],
+                "params": ["temperature"],
                 "type": "field"
               },
               {
@@ -587,9 +545,7 @@
       "options": {
         "orientation": "vertical",
         "reduceOptions": {
-          "calcs": [
-            "last"
-          ],
+          "calcs": ["last"],
           "fields": "",
           "values": false
         },
@@ -607,15 +563,11 @@
           },
           "groupBy": [
             {
-              "params": [
-                "$__interval"
-              ],
+              "params": ["$__interval"],
               "type": "time"
             },
             {
-              "params": [
-                "previous"
-              ],
+              "params": ["previous"],
               "type": "fill"
             }
           ],
@@ -629,9 +581,7 @@
           "select": [
             [
               {
-                "params": [
-                  "internet"
-                ],
+                "params": ["internet"],
                 "type": "field"
               },
               {
@@ -714,9 +664,7 @@
       "id": 12,
       "options": {
         "legend": {
-          "calcs": [
-            "sum"
-          ],
+          "calcs": ["sum"],
           "displayMode": "table",
           "placement": "right",
           "showLegend": true,
@@ -738,21 +686,15 @@
           },
           "groupBy": [
             {
-              "params": [
-                "$__interval"
-              ],
+              "params": ["$__interval"],
               "type": "time"
             },
             {
-              "params": [
-                "name"
-              ],
+              "params": ["name"],
               "type": "tag"
             },
             {
-              "params": [
-                "none"
-              ],
+              "params": ["none"],
               "type": "fill"
             }
           ],
@@ -766,9 +708,7 @@
           "select": [
             [
               {
-                "params": [
-                  "rxbytes"
-                ],
+                "params": ["rxbytes"],
                 "type": "field"
               },
               {
@@ -782,9 +722,7 @@
             ],
             [
               {
-                "params": [
-                  "txbytes"
-                ],
+                "params": ["txbytes"],
                 "type": "field"
               },
               {
@@ -878,9 +816,7 @@
       "interval": "",
       "options": {
         "legend": {
-          "calcs": [
-            "mean"
-          ],
+          "calcs": ["mean"],
           "displayMode": "table",
           "placement": "right",
           "showLegend": true,
@@ -902,21 +838,15 @@
           },
           "groupBy": [
             {
-              "params": [
-                "$__interval"
-              ],
+              "params": ["$__interval"],
               "type": "time"
             },
             {
-              "params": [
-                "name"
-              ],
+              "params": ["name"],
               "type": "tag"
             },
             {
-              "params": [
-                "none"
-              ],
+              "params": ["none"],
               "type": "fill"
             }
           ],
@@ -930,9 +860,7 @@
           "select": [
             [
               {
-                "params": [
-                  "txrate"
-                ],
+                "params": ["txrate"],
                 "type": "field"
               },
               {
@@ -1028,9 +956,7 @@
       "interval": "",
       "options": {
         "legend": {
-          "calcs": [
-            "lastNotNull"
-          ],
+          "calcs": ["lastNotNull"],
           "displayMode": "table",
           "placement": "right",
           "showLegend": true,
@@ -1052,21 +978,15 @@
           },
           "groupBy": [
             {
-              "params": [
-                "$__interval"
-              ],
+              "params": ["$__interval"],
               "type": "time"
             },
             {
-              "params": [
-                "name"
-              ],
+              "params": ["name"],
               "type": "tag"
             },
             {
-              "params": [
-                "none"
-              ],
+              "params": ["none"],
               "type": "fill"
             }
           ],
@@ -1080,9 +1000,7 @@
           "select": [
             [
               {
-                "params": [
-                  "signal"
-                ],
+                "params": ["signal"],
                 "type": "field"
               },
               {
@@ -1177,10 +1095,7 @@
       "id": 31,
       "options": {
         "legend": {
-          "calcs": [
-            "mean",
-            "max"
-          ],
+          "calcs": ["mean", "max"],
           "displayMode": "table",
           "placement": "right",
           "showLegend": true,
@@ -1202,21 +1117,15 @@
           },
           "groupBy": [
             {
-              "params": [
-                "$__interval"
-              ],
+              "params": ["$__interval"],
               "type": "time"
             },
             {
-              "params": [
-                "name"
-              ],
+              "params": ["name"],
               "type": "tag"
             },
             {
-              "params": [
-                "previous"
-              ],
+              "params": ["previous"],
               "type": "fill"
             }
           ],
@@ -1230,9 +1139,7 @@
           "select": [
             [
               {
-                "params": [
-                  "txbytes"
-                ],
+                "params": ["txbytes"],
                 "type": "field"
               },
               {
@@ -1255,15 +1162,11 @@
           },
           "groupBy": [
             {
-              "params": [
-                "$__interval"
-              ],
+              "params": ["$__interval"],
               "type": "time"
             },
             {
-              "params": [
-                "null"
-              ],
+              "params": ["null"],
               "type": "fill"
             }
           ],
@@ -1276,9 +1179,7 @@
           "select": [
             [
               {
-                "params": [
-                  "value"
-                ],
+                "params": ["value"],
                 "type": "field"
               },
               {
@@ -1361,9 +1262,7 @@
       "id": 14,
       "options": {
         "legend": {
-          "calcs": [
-            "sum"
-          ],
+          "calcs": ["sum"],
           "displayMode": "table",
           "placement": "right",
           "showLegend": true,
@@ -1385,21 +1284,15 @@
           },
           "groupBy": [
             {
-              "params": [
-                "$__interval"
-              ],
+              "params": ["$__interval"],
               "type": "time"
             },
             {
-              "params": [
-                "name"
-              ],
+              "params": ["name"],
               "type": "tag"
             },
             {
-              "params": [
-                "previous"
-              ],
+              "params": ["previous"],
               "type": "fill"
             }
           ],
@@ -1413,9 +1306,7 @@
           "select": [
             [
               {
-                "params": [
-                  "txbytes"
-                ],
+                "params": ["txbytes"],
                 "type": "field"
               },
               {
@@ -1438,15 +1329,11 @@
           },
           "groupBy": [
             {
-              "params": [
-                "$__interval"
-              ],
+              "params": ["$__interval"],
               "type": "time"
             },
             {
-              "params": [
-                "null"
-              ],
+              "params": ["null"],
               "type": "fill"
             }
           ],
@@ -1459,9 +1346,7 @@
           "select": [
             [
               {
-                "params": [
-                  "value"
-                ],
+                "params": ["value"],
                 "type": "field"
               },
               {
@@ -1546,9 +1431,7 @@
       "id": 30,
       "options": {
         "legend": {
-          "calcs": [
-            "mean"
-          ],
+          "calcs": ["mean"],
           "displayMode": "table",
           "placement": "right",
           "showLegend": true,
@@ -1570,21 +1453,15 @@
           },
           "groupBy": [
             {
-              "params": [
-                "$__interval"
-              ],
+              "params": ["$__interval"],
               "type": "time"
             },
             {
-              "params": [
-                "command"
-              ],
+              "params": ["command"],
               "type": "tag"
             },
             {
-              "params": [
-                "none"
-              ],
+              "params": ["none"],
               "type": "fill"
             }
           ],
@@ -1596,9 +1473,7 @@
           "select": [
             [
               {
-                "params": [
-                  "duration"
-                ],
+                "params": ["duration"],
                 "type": "field"
               },
               {
@@ -1702,15 +1577,11 @@
           },
           "groupBy": [
             {
-              "params": [
-                "$__interval"
-              ],
+              "params": ["$__interval"],
               "type": "time"
             },
             {
-              "params": [
-                "none"
-              ],
+              "params": ["none"],
               "type": "fill"
             }
           ],
@@ -1724,9 +1595,7 @@
           "select": [
             [
               {
-                "params": [
-                  "bytes"
-                ],
+                "params": ["bytes"],
                 "type": "field"
               },
               {
@@ -1811,9 +1680,7 @@
       "id": 16,
       "options": {
         "legend": {
-          "calcs": [
-            "lastNotNull"
-          ],
+          "calcs": ["lastNotNull"],
           "displayMode": "table",
           "placement": "bottom",
           "showLegend": true,
@@ -1835,27 +1702,19 @@
           },
           "groupBy": [
             {
-              "params": [
-                "$__interval"
-              ],
+              "params": ["$__interval"],
               "type": "time"
             },
             {
-              "params": [
-                "label"
-              ],
+              "params": ["label"],
               "type": "tag"
             },
             {
-              "params": [
-                "uuid"
-              ],
+              "params": ["uuid"],
               "type": "tag"
             },
             {
-              "params": [
-                "none"
-              ],
+              "params": ["none"],
               "type": "fill"
             }
           ],
@@ -1867,9 +1726,7 @@
           "select": [
             [
               {
-                "params": [
-                  "free"
-                ],
+                "params": ["free"],
                 "type": "field"
               },
               {
@@ -1910,11 +1767,7 @@
             },
             "lineInterpolation": "smooth",
             "lineStyle": {
-              "dash": [
-                0,
-                3,
-                3
-              ],
+              "dash": [0, 3, 3],
               "fill": "dot"
             },
             "lineWidth": 1,
@@ -1960,9 +1813,7 @@
       "id": 20,
       "options": {
         "legend": {
-          "calcs": [
-            "mean"
-          ],
+          "calcs": ["mean"],
           "displayMode": "table",
           "placement": "bottom",
           "showLegend": true
@@ -1982,15 +1833,11 @@
           },
           "groupBy": [
             {
-              "params": [
-                "$__interval"
-              ],
+              "params": ["$__interval"],
               "type": "time"
             },
             {
-              "params": [
-                "null"
-              ],
+              "params": ["null"],
               "type": "fill"
             }
           ],
@@ -2004,9 +1851,7 @@
           "select": [
             [
               {
-                "params": [
-                  "cpuload"
-                ],
+                "params": ["cpuload"],
                 "type": "field"
               },
               {
@@ -2047,11 +1892,7 @@
             },
             "lineInterpolation": "smooth",
             "lineStyle": {
-              "dash": [
-                0,
-                3,
-                3
-              ],
+              "dash": [0, 3, 3],
               "fill": "dot"
             },
             "lineWidth": 1,
@@ -2115,9 +1956,7 @@
       "id": 21,
       "options": {
         "legend": {
-          "calcs": [
-            "mean"
-          ],
+          "calcs": ["mean"],
           "displayMode": "table",
           "placement": "bottom",
           "showLegend": true
@@ -2137,15 +1976,11 @@
           },
           "groupBy": [
             {
-              "params": [
-                "$__interval"
-              ],
+              "params": ["$__interval"],
               "type": "time"
             },
             {
-              "params": [
-                "linear"
-              ],
+              "params": ["linear"],
               "type": "fill"
             }
           ],
@@ -2159,9 +1994,7 @@
           "select": [
             [
               {
-                "params": [
-                  "memfree"
-                ],
+                "params": ["memfree"],
                 "type": "field"
               },
               {
@@ -2203,11 +2036,7 @@
             },
             "lineInterpolation": "smooth",
             "lineStyle": {
-              "dash": [
-                0,
-                3,
-                3
-              ],
+              "dash": [0, 3, 3],
               "fill": "dot"
             },
             "lineWidth": 1,
@@ -2271,9 +2100,7 @@
       "id": 32,
       "options": {
         "legend": {
-          "calcs": [
-            "mean"
-          ],
+          "calcs": ["mean"],
           "displayMode": "table",
           "placement": "bottom",
           "showLegend": true
@@ -2301,9 +2128,7 @@
           "select": [
             [
               {
-                "params": [
-                  "temperature"
-                ],
+                "params": ["temperature"],
                 "type": "field"
               }
             ]
@@ -2404,9 +2229,7 @@
         "footer": {
           "countRows": false,
           "fields": "",
-          "reducer": [
-            "sum"
-          ],
+          "reducer": ["sum"],
           "show": false
         },
         "frameIndex": 3,
@@ -2427,9 +2250,7 @@
           },
           "groupBy": [
             {
-              "params": [
-                "name"
-              ],
+              "params": ["name"],
               "type": "tag"
             }
           ],
@@ -2443,9 +2264,7 @@
           "select": [
             [
               {
-                "params": [
-                  "cpu"
-                ],
+                "params": ["cpu"],
                 "type": "field"
               },
               {
@@ -2453,17 +2272,13 @@
                 "type": "mean"
               },
               {
-                "params": [
-                  "CPU"
-                ],
+                "params": ["CPU"],
                 "type": "alias"
               }
             ],
             [
               {
-                "params": [
-                  "memory"
-                ],
+                "params": ["memory"],
                 "type": "field"
               },
               {
@@ -2471,9 +2286,7 @@
                 "type": "last"
               },
               {
-                "params": [
-                  "RAM"
-                ],
+                "params": ["RAM"],
                 "type": "alias"
               }
             ]
@@ -2583,9 +2396,7 @@
         "footer": {
           "countRows": false,
           "fields": "",
-          "reducer": [
-            "sum"
-          ],
+          "reducer": ["sum"],
           "show": false
         },
         "showHeader": true,
@@ -2605,27 +2416,19 @@
           },
           "groupBy": [
             {
-              "params": [
-                "interface-name"
-              ],
+              "params": ["interface-name"],
               "type": "tag"
             },
             {
-              "params": [
-                "address"
-              ],
+              "params": ["address"],
               "type": "tag"
             },
             {
-              "params": [
-                "description"
-              ],
+              "params": ["description"],
               "type": "tag"
             },
             {
-              "params": [
-                "state"
-              ],
+              "params": ["state"],
               "type": "tag"
             }
           ],
@@ -2639,9 +2442,7 @@
           "select": [
             [
               {
-                "params": [
-                  "uptime"
-                ],
+                "params": ["uptime"],
                 "type": "field"
               },
               {
@@ -2682,8 +2483,8 @@
     ]
   },
   "timezone": "",
-  "title": "Keenetic",
-  "uid": "keyiflerolsun",
+  "title": "Keenetic EN",
+  "uid": "keyiflerolsun_KN_EN",
   "version": 1,
   "weekStart": ""
 }
