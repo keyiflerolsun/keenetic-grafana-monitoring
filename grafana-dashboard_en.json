@@ -348,7 +348,27 @@
               },
               {
                 "id": "max",
-                "value": 100
+                "value": 120
+              },
+              {
+                "id": "thresholds",
+                "value": {
+                  "mode": "absolute",
+                  "steps": [
+                    {
+                      "color": "green",
+                      "value": null
+                    },
+                    {
+                      "color": "orange",
+                      "value": 70
+                    },
+                    {
+                      "color": "semi-dark-red",
+                      "value": 90
+                    }
+                  ]
+                }
               }
             ]
           }
@@ -1935,7 +1955,7 @@
           {
             "matcher": {
               "id": "byName",
-              "options": "RAM Kullanımı"
+              "options": "RAM Usage"
             },
             "properties": [
               {
