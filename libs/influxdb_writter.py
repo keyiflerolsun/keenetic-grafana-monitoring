@@ -9,7 +9,7 @@ class InfuxWriter(object):
         self._client        = InfluxDBClient.from_config_file(configuration_file)
         self._write_api     = self._client.write_api(write_options=SYNCHRONOUS)
 
-        logging.info(f"Connecting to InfluxDB: {self._configuration['url']}")
+        logging.info(f"InfluxDB'ye Bağlanıyor: {self._configuration['url']}")
 
     def write_metrics(self, metrics):
         self._write_api.write(bucket=self._configuration["bucket"], org=self._configuration["org"], record=metrics)

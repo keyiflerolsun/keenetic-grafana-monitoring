@@ -4,7 +4,7 @@
 
 ## Kurulum
 
-1. `config/__config.ini` dosyasında keenetic arayüzünüzün kullanıcı adı ve şifresini belirtin.
+1. `config/__config.ini` dosyasında keenetic arayüzünüzün [kullanıcı adı ve şifresini](https://github.com/keyiflerolsun/keenetic-grafana-monitoring/blob/master/config/__config.ini#L12-#L13) belirtin.
   2. dosya adını `config.ini` olarak değiştirin.
 3. `docker compose up -d --build` komutu ile konteynerleri başlatın.
 4. Grafana Arayüzüne Giriş Yapın.

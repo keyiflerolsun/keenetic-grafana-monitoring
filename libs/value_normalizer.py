@@ -48,5 +48,5 @@ def normalize_value(value):
     if isvalidmetric(value):
         return value
 
-    logging.warning(f"Value: {str(value)} is not valid metric type")
+    logging.warning(f"Değer: `{str(value)}` geçerli bir metrik türü değil!")
     return None
