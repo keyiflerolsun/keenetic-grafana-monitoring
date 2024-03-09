@@ -25,19 +25,24 @@ services:
         container_name : grafana
         image          : grafana/grafana:latest
         restart        : always
-        volumes        :
-            - grafana:/var/lib/grafana
+        networks       :
+            - local
         ports          :
             - 3000:3000
+        volumes        :
+            - grafana:/var/lib/grafana
+
 
     influxdb:
         container_name : influxdb
         image          : influxdb:1.8.1
         restart        : always
-        volumes        :
-            - influxdb:/var/lib/influxdb
+        networks       :
+            - local
         ports          :
             - 8086:8086
+        volumes        :
+            - influxdb:/var/lib/influxdb
         environment    :
             INFLUXDB_DB                : keenetic
             INFLUXDB_HTTP_AUTH_ENABLED : true
