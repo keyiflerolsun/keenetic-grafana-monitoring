@@ -25,7 +25,7 @@ Custom HTTP Headers : Authorization | Token DOCKER_CONFIG_TOKEN
 DATABASE            : keenetic
 ```
 
-[![GitHub](.github/InfluxDB.png)](#)
+[![InfluxDB](.github/InfluxDB.png)](#)
 
 > [Home > Dashboards > Import dashboard](http://127.0.0.1:3000/dashboard/import)
 
