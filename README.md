@@ -20,10 +20,9 @@ Grafana Pass    : admin
 5. Sekmesinden yeni bir `InfluxDB` veri kaynağı oluşturun. Girmeniz gereken değerler;
 
 ```txt
-URL      : http://influxdb:8086
-DATABASE : keenetic
-USER     : merhaba
-PASSWORD : dunya
+URL                 : http://influxdb:8086
+Custom HTTP Headers : Authorization | Token ADMIN_TOKEN
+DATABASE            : keenetic
 ```
 
 > [Home > Dashboards > Import dashboard](http://127.0.0.1:3000/dashboard/import)
