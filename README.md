@@ -25,6 +25,8 @@ Custom HTTP Headers : Authorization | Token DOCKER_CONFIG_TOKEN
 DATABASE            : keenetic
 ```
 
+[![GitHub](.github/InfluxDB.png)](#)
+
 > [Home > Dashboards > Import dashboard](http://127.0.0.1:3000/dashboard/import)
 
 6. Sekmesinden `grafana-dashboard` **(TR veya EN)** `json` dosyasını `Import` edin ve `InfluxDB` kaynağını seçin.
