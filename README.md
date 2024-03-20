@@ -21,7 +21,7 @@ Grafana Pass    : admin
 
 ```txt
 URL                 : http://influxdb:8086
-Custom HTTP Headers : Authorization | Token ADMIN_TOKEN
+Custom HTTP Headers : Authorization | Token DOCKER_CONFIG_TOKEN
 DATABASE            : keenetic
 ```
 

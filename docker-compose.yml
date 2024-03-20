@@ -48,6 +48,6 @@ services:
             DOCKER_INFLUXDB_INIT_ORG         : keenetic
             DOCKER_INFLUXDB_INIT_BUCKET      : keenetic
             DOCKER_INFLUXDB_INIT_RETENTION   : 52w
-            DOCKER_INFLUXDB_INIT_ADMIN_TOKEN : ADMIN_TOKEN      # * openssl rand -hex 32
+            DOCKER_INFLUXDB_INIT_ADMIN_TOKEN : DOCKER_CONFIG_TOKEN      # * openssl rand -hex 32
             DOCKER_INFLUXDB_INIT_USERNAME    : merhaba
             DOCKER_INFLUXDB_INIT_PASSWORD    : dunya12345
