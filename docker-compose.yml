@@ -7,8 +7,9 @@ networks:
         driver: bridge
 
 volumes:
-    influxdb:
     grafana:
+    influxdb_data:
+    influxdb_config:
 
 services:
     keenetic_exporter:
@@ -42,7 +43,8 @@ services:
         ports          :
             - 8086:8086
         volumes        :
-            - influxdb:/var/lib/influxdb
+            - influxdb_data:/var/lib/influxdb2
+            - influxdb_config:/etc/influxdb2
         environment    :
             DOCKER_INFLUXDB_INIT_MODE        : setup
             DOCKER_INFLUXDB_INIT_ORG         : keenetic
