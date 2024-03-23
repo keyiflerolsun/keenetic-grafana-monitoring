@@ -88,7 +88,7 @@ if __name__ == "__main__":
 
     metrics = metrics_configuration["metrics"]
     config  = configparser.ConfigParser(interpolation=None)
-    config.read(f"{pwd}/../config/config.ini")
+    config.read(f"{pwd}/../config/config.ini", encoding="utf-8")
 
     keenetic_config = config["keenetic"]
     konsol.log(f"Router'a Bağlanıyor: {keenetic_config['admin_endpoint']}")

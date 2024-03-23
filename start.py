@@ -102,7 +102,7 @@ if __name__ == "__main__":
 
     config          = configparser.ConfigParser(interpolation=None)
     config_path     = f"{pwd}/config/config.ini"
-    config.read(config_path)
+    config.read(config_path, encoding="utf-8")
 
     infuxdb_writer  = InfuxWriter(config["influx2"], config_path)
 
