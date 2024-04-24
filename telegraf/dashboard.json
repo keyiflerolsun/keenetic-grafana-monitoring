@@ -225,7 +225,7 @@
       "fieldConfig": {
         "defaults": {
           "color": {
-            "mode": "continuous-BlYlRd"
+            "mode": "continuous-RdYlGr"
           },
           "mappings": [],
           "thresholds": {
@@ -986,7 +986,7 @@
           },
           "fieldMinMax": false,
           "mappings": [],
-          "max": 489997189120,
+          "max": 974378102784,
           "min": 0,
           "thresholds": {
             "mode": "absolute",
@@ -1097,7 +1097,7 @@
         "x": 15,
         "y": 4
       },
-      "id": 61872,
+      "id": 61871,
       "maxDataPoints": 100,
       "options": {
         "minVizHeight": 75,
@@ -1139,7 +1139,7 @@
           ],
           "measurement": "disk",
           "policy": "default",
-          "query": "SELECT last(\"temp\") FROM \"temp\" WHERE (\"sensor\" = 'coretemp_package_id_0') AND $timeFilter GROUP BY time($interval) fill(null)",
+          "query": "SELECT last(\"temp\") FROM \"temp\" WHERE (\"sensor\" = 'acpitz') AND $timeFilter GROUP BY time($interval) fill(null)",
           "rawQuery": true,
           "refId": "A",
           "resultFormat": "time_series",
@@ -1172,7 +1172,7 @@
           ]
         }
       ],
-      "title": "CPU",
+      "title": "Board",
       "type": "gauge"
     },
     {
@@ -1353,7 +1353,7 @@
         "x": 21,
         "y": 4
       },
-      "id": 61871,
+      "id": 61872,
       "maxDataPoints": 100,
       "options": {
         "minVizHeight": 75,
@@ -1395,7 +1395,7 @@
           ],
           "measurement": "disk",
           "policy": "default",
-          "query": "SELECT last(\"temp\") FROM \"temp\" WHERE (\"sensor\" = 'acpitz') AND $timeFilter GROUP BY time($interval) fill(null)",
+          "query": "SELECT last(\"temp\") FROM \"temp\" WHERE (\"sensor\" = 'coretemp_package_id_0') AND $timeFilter GROUP BY time($interval) fill(null)",
           "rawQuery": true,
           "refId": "A",
           "resultFormat": "time_series",
@@ -1428,7 +1428,7 @@
           ]
         }
       ],
-      "title": "Board",
+      "title": "CPU",
       "type": "gauge"
     },
     {
@@ -1983,7 +1983,7 @@
     ]
   },
   "timezone": "browser",
-  "title": "KekikTelegraf",
+  "title": "pve.local",
   "uid": "KekikTelegraf",
   "version": 1,
   "weekStart": ""
