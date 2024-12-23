@@ -1,8 +1,8 @@
 {
   "__inputs": [
     {
-      "name": "DS_TELEGRAF_NODE",
-      "label": "telegraf_node",
+      "name": "DS_TELEGRAF",
+      "label": "telegraf",
       "description": "",
       "type": "datasource",
       "pluginId": "influxdb",
@@ -75,7 +75,7 @@
     {
       "datasource": {
         "type": "influxdb",
-        "uid": "${DS_TELEGRAF_NODE}"
+        "uid": "${DS_TELEGRAF}"
       },
       "description": "",
       "fieldConfig": {
@@ -129,7 +129,7 @@
         {
           "datasource": {
             "type": "influxdb",
-            "uid": "${DS_TELEGRAF_NODE}"
+            "uid": "${DS_TELEGRAF}"
           },
           "editorMode": "code",
           "expr": "100 - netdata_cpu_cpu_percentage_average{chart=\"cpu.cpu4\", cpu=\"cpu4\", dimension=\"idle\", family=\"utilization\", instance=\"192.168.1.70:19999\", job=\"noted\"}",
@@ -147,7 +147,7 @@
     {
       "datasource": {
         "type": "influxdb",
-        "uid": "${DS_TELEGRAF_NODE}"
+        "uid": "${DS_TELEGRAF}"
       },
       "description": "",
       "fieldConfig": {
@@ -201,7 +201,7 @@
         {
           "datasource": {
             "type": "influxdb",
-            "uid": "${DS_TELEGRAF_NODE}"
+            "uid": "${DS_TELEGRAF}"
           },
           "editorMode": "code",
           "expr": "100 - netdata_cpu_cpu_percentage_average{chart=\"cpu.cpu4\", cpu=\"cpu4\", dimension=\"idle\", family=\"utilization\", instance=\"192.168.1.70:19999\", job=\"noted\"}",
@@ -219,13 +219,13 @@
     {
       "datasource": {
         "type": "influxdb",
-        "uid": "${DS_TELEGRAF_NODE}"
+        "uid": "${DS_TELEGRAF}"
       },
       "description": "",
       "fieldConfig": {
         "defaults": {
           "color": {
-            "mode": "continuous-RdYlGr"
+            "mode": "continuous-BlYlRd"
           },
           "mappings": [],
           "thresholds": {
@@ -273,7 +273,7 @@
         {
           "datasource": {
             "type": "influxdb",
-            "uid": "${DS_TELEGRAF_NODE}"
+            "uid": "${DS_TELEGRAF}"
           },
           "editorMode": "code",
           "expr": "100 - netdata_cpu_cpu_percentage_average{chart=\"cpu.cpu4\", cpu=\"cpu4\", dimension=\"idle\", family=\"utilization\", instance=\"192.168.1.70:19999\", job=\"noted\"}",
@@ -291,7 +291,7 @@
     {
       "datasource": {
         "type": "influxdb",
-        "uid": "${DS_TELEGRAF_NODE}"
+        "uid": "${DS_TELEGRAF}"
       },
       "fieldConfig": {
         "defaults": {
@@ -361,7 +361,7 @@
         {
           "datasource": {
             "type": "influxdb",
-            "uid": "${DS_TELEGRAF_NODE}"
+            "uid": "${DS_TELEGRAF}"
           },
           "dsType": "telegraf",
           "groupBy": [
@@ -419,7 +419,7 @@
     {
       "datasource": {
         "type": "influxdb",
-        "uid": "${DS_TELEGRAF_NODE}"
+        "uid": "${DS_TELEGRAF}"
       },
       "description": "",
       "fieldConfig": {
@@ -473,7 +473,7 @@
         {
           "datasource": {
             "type": "influxdb",
-            "uid": "${DS_TELEGRAF_NODE}"
+            "uid": "${DS_TELEGRAF}"
           },
           "editorMode": "code",
           "expr": "netdata_system_uptime_seconds_average{chart=\"system.uptime\",dimension=\"uptime\",family=\"uptime\",instance=\"192.168.1.70:19999\",job=\"noted\"}",
@@ -491,7 +491,7 @@
     {
       "datasource": {
         "type": "influxdb",
-        "uid": "${DS_TELEGRAF_NODE}"
+        "uid": "${DS_TELEGRAF}"
       },
       "fieldConfig": {
         "defaults": {
@@ -559,7 +559,7 @@
           "alias": "Board",
           "datasource": {
             "type": "influxdb",
-            "uid": "${DS_TELEGRAF_NODE}"
+            "uid": "${DS_TELEGRAF}"
           },
           "editorMode": "code",
           "expr": "netdata_net_net_kilobits_persec_average{chart=\"net.eth0\",dimension=\"sent\",family=\"eth0\",instance=\"192.168.1.70:19999\",job=\"noted\"}*-1",
@@ -574,7 +574,7 @@
           "alias": "SSD",
           "datasource": {
             "type": "influxdb",
-            "uid": "${DS_TELEGRAF_NODE}"
+            "uid": "${DS_TELEGRAF}"
           },
           "hide": false,
           "query": "SELECT last(\"temp\") FROM \"temp\" WHERE (\"sensor\" = 'nvme_composite') AND $timeFilter GROUP BY time($interval) fill(null)",
@@ -586,7 +586,7 @@
           "alias": "CPU",
           "datasource": {
             "type": "influxdb",
-            "uid": "${DS_TELEGRAF_NODE}"
+            "uid": "${DS_TELEGRAF}"
           },
           "hide": false,
           "query": "SELECT last(\"temp\") FROM \"temp\" WHERE (\"sensor\" = 'coretemp_package_id_0') AND $timeFilter GROUP BY time($interval) fill(null)",
@@ -601,7 +601,7 @@
     {
       "datasource": {
         "type": "influxdb",
-        "uid": "${DS_TELEGRAF_NODE}"
+        "uid": "${DS_TELEGRAF}"
       },
       "fieldConfig": {
         "defaults": {
@@ -670,7 +670,7 @@
         {
           "datasource": {
             "type": "influxdb",
-            "uid": "${DS_TELEGRAF_NODE}"
+            "uid": "${DS_TELEGRAF}"
           },
           "dsType": "telegraf",
           "groupBy": [
@@ -734,7 +734,7 @@
     {
       "datasource": {
         "type": "influxdb",
-        "uid": "${DS_TELEGRAF_NODE}"
+        "uid": "${DS_TELEGRAF}"
       },
       "fieldConfig": {
         "defaults": {
@@ -803,7 +803,7 @@
         {
           "datasource": {
             "type": "influxdb",
-            "uid": "${DS_TELEGRAF_NODE}"
+            "uid": "${DS_TELEGRAF}"
           },
           "dsType": "telegraf",
           "groupBy": [
@@ -855,7 +855,7 @@
     {
       "datasource": {
         "type": "influxdb",
-        "uid": "${DS_TELEGRAF_NODE}"
+        "uid": "${DS_TELEGRAF}"
       },
       "fieldConfig": {
         "defaults": {
@@ -925,7 +925,7 @@
         {
           "datasource": {
             "type": "influxdb",
-            "uid": "${DS_TELEGRAF_NODE}"
+            "uid": "${DS_TELEGRAF}"
           },
           "dsType": "telegraf",
           "groupBy": [
@@ -977,7 +977,7 @@
     {
       "datasource": {
         "type": "influxdb",
-        "uid": "${DS_TELEGRAF_NODE}"
+        "uid": "${DS_TELEGRAF}"
       },
       "fieldConfig": {
         "defaults": {
@@ -986,7 +986,7 @@
           },
           "fieldMinMax": false,
           "mappings": [],
-          "max": 482131607552,
+          "max": 489997189120,
           "min": 0,
           "thresholds": {
             "mode": "absolute",
@@ -1032,7 +1032,7 @@
           "alias": "$col",
           "datasource": {
             "type": "influxdb",
-            "uid": "${DS_TELEGRAF_NODE}"
+            "uid": "${DS_TELEGRAF}"
           },
           "editorMode": "code",
           "expr": "netdata_disk_space_GiB_average{chart=\"disk_space._\", dimension=\"avail\", family=\"/\", instance=\"192.168.1.70:19999\", job=\"noted\"}",
@@ -1050,7 +1050,7 @@
     {
       "datasource": {
         "type": "influxdb",
-        "uid": "${DS_TELEGRAF_NODE}"
+        "uid": "${DS_TELEGRAF}"
       },
       "fieldConfig": {
         "defaults": {
@@ -1097,7 +1097,7 @@
         "x": 15,
         "y": 4
       },
-      "id": 61871,
+      "id": 61872,
       "maxDataPoints": 100,
       "options": {
         "minVizHeight": 75,
@@ -1120,7 +1120,7 @@
           "alias": "",
           "datasource": {
             "type": "influxdb",
-            "uid": "${DS_TELEGRAF_NODE}"
+            "uid": "${DS_TELEGRAF}"
           },
           "dsType": "telegraf",
           "groupBy": [
@@ -1139,7 +1139,7 @@
           ],
           "measurement": "disk",
           "policy": "default",
-          "query": "SELECT last(\"temp\") FROM \"temp\" WHERE (\"sensor\" = 'acpitz') AND $timeFilter GROUP BY time($interval) fill(null)",
+          "query": "SELECT last(\"temp\") FROM \"temp\" WHERE (\"sensor\" = 'coretemp_package_id_0') AND $timeFilter GROUP BY time($interval) fill(null)",
           "rawQuery": true,
           "refId": "A",
           "resultFormat": "time_series",
@@ -1172,13 +1172,13 @@
           ]
         }
       ],
-      "title": "Board",
+      "title": "CPU",
       "type": "gauge"
     },
     {
       "datasource": {
         "type": "influxdb",
-        "uid": "${DS_TELEGRAF_NODE}"
+        "uid": "${DS_TELEGRAF}"
       },
       "fieldConfig": {
         "defaults": {
@@ -1248,7 +1248,7 @@
           "alias": "",
           "datasource": {
             "type": "influxdb",
-            "uid": "${DS_TELEGRAF_NODE}"
+            "uid": "${DS_TELEGRAF}"
           },
           "dsType": "telegraf",
           "groupBy": [
@@ -1306,7 +1306,7 @@
     {
       "datasource": {
         "type": "influxdb",
-        "uid": "${DS_TELEGRAF_NODE}"
+        "uid": "${DS_TELEGRAF}"
       },
       "fieldConfig": {
         "defaults": {
@@ -1353,7 +1353,7 @@
         "x": 21,
         "y": 4
       },
-      "id": 61872,
+      "id": 61871,
       "maxDataPoints": 100,
       "options": {
         "minVizHeight": 75,
@@ -1376,7 +1376,7 @@
           "alias": "",
           "datasource": {
             "type": "influxdb",
-            "uid": "${DS_TELEGRAF_NODE}"
+            "uid": "${DS_TELEGRAF}"
           },
           "dsType": "telegraf",
           "groupBy": [
@@ -1395,7 +1395,7 @@
           ],
           "measurement": "disk",
           "policy": "default",
-          "query": "SELECT last(\"temp\") FROM \"temp\" WHERE (\"sensor\" = 'coretemp_package_id_0') AND $timeFilter GROUP BY time($interval) fill(null)",
+          "query": "SELECT last(\"temp\") FROM \"temp\" WHERE (\"sensor\" = 'acpitz') AND $timeFilter GROUP BY time($interval) fill(null)",
           "rawQuery": true,
           "refId": "A",
           "resultFormat": "time_series",
@@ -1428,13 +1428,13 @@
           ]
         }
       ],
-      "title": "CPU",
+      "title": "Board",
       "type": "gauge"
     },
     {
       "datasource": {
         "type": "influxdb",
-        "uid": "${DS_TELEGRAF_NODE}"
+        "uid": "${DS_TELEGRAF}"
       },
       "fieldConfig": {
         "defaults": {
@@ -1569,7 +1569,7 @@
           "alias": "$tag_host: $col",
           "datasource": {
             "type": "influxdb",
-            "uid": "${DS_TELEGRAF_NODE}"
+            "uid": "${DS_TELEGRAF}"
           },
           "dsType": "telegraf",
           "function": "mean",
@@ -1619,7 +1619,7 @@
     {
       "datasource": {
         "type": "influxdb",
-        "uid": "${DS_TELEGRAF_NODE}"
+        "uid": "${DS_TELEGRAF}"
       },
       "fieldConfig": {
         "defaults": {
@@ -1728,7 +1728,7 @@
           "alias": "$tag_cpu",
           "datasource": {
             "type": "influxdb",
-            "uid": "${DS_TELEGRAF_NODE}"
+            "uid": "${DS_TELEGRAF}"
           },
           "dsType": "telegraf",
           "function": "mean",
@@ -1779,7 +1779,7 @@
     {
       "datasource": {
         "type": "influxdb",
-        "uid": "${DS_TELEGRAF_NODE}"
+        "uid": "${DS_TELEGRAF}"
       },
       "fieldConfig": {
         "defaults": {
@@ -1900,7 +1900,7 @@
           "alias": "$tag_host: $col",
           "datasource": {
             "type": "influxdb",
-            "uid": "${DS_TELEGRAF_NODE}"
+            "uid": "${DS_TELEGRAF}"
           },
           "dsType": "telegraf",
           "function": "mean",
@@ -1954,7 +1954,7 @@
     "list": []
   },
   "time": {
-    "from": "now-6h",
+    "from": "now-1h",
     "to": "now"
   },
   "timepicker": {
@@ -1983,8 +1983,8 @@
     ]
   },
   "timezone": "browser",
-  "title": "pve.node",
-  "uid": "pve_node",
+  "title": "KekikTelegraf",
+  "uid": "KekikTelegraf",
   "version": 1,
   "weekStart": ""
 }
